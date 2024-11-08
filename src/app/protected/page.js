@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-export default function Protected() {
+// Create a separate component for the protected content
+function ProtectedContent() {
   const [notification, setNotification] = useState(null);
   const [isValidated, setIsValidated] = useState(false);
   const searchParams = useSearchParams();
@@ -36,7 +37,6 @@ export default function Protected() {
           setIsValidated(true);
         } else {
           setNotification({ message: "Invalid API key", color: "red" });
-          // Redirect back to playground after 3 seconds
           setTimeout(() => {
             window.location.href = '/playground';
           }, 3000);
@@ -75,9 +75,23 @@ export default function Protected() {
         <div className="bg-white rounded-lg shadow p-6">
           <h1 className="text-2xl font-bold mb-4">Protected Content</h1>
           <p>This content is only visible with a valid API key.</p>
-          {/* Add your protected content here */}
         </div>
       )}
     </div>
+  );
+}
+
+// Main component with Suspense boundary
+export default function Protected() {
+  return (
+    <Suspense fallback={
+      <div className="p-8">
+        <div className="bg-gray-100 p-4 rounded animate-pulse">
+          Loading...
+        </div>
+      </div>
+    }>
+      <ProtectedContent />
+    </Suspense>
   );
 }
