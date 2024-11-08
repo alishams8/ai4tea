@@ -346,7 +346,7 @@ export default function Dashboard() {
         </div>
 
         <div className="mt-8 text-center">
-          <p>Have any questions, feedback or need support? We'd love to hear from you!</p>
+          <p>Have any questions, feedback or need support? We&apos;d love to hear from you!</p>
           <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg">
             Contact us
           </button>

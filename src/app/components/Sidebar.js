@@ -1,6 +1,7 @@
 // components/Sidebar.js
 "use client";
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
@@ -31,7 +32,14 @@ export default function Sidebar() {
       {/* Sidebar Content */}
       <div className={`${isOpen ? 'w-64' : 'w-0'} transition-all duration-300 h-screen bg-white border-r overflow-hidden`}>
         <div className="p-4 border-b">
-          <img src="/logo.png" alt="Logo" className="h-8" />
+          <Image 
+            src="/logo.png" 
+            alt="Logo" 
+            width={128} 
+            height={40} 
+            className="w-32" 
+            priority
+          />
           <select className="mt-4 w-full p-2 border rounded">
             <option>Personal</option>
           </select>
